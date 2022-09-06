@@ -12,18 +12,29 @@ function App() {
   const buttonHandlerGetRandom = () => {
     let index = Math.floor(Math.random() * (contacts.length + 1));
     setStateContact((prevState) => {
-      console.log('prevState is :', ...prevState)
       return [...prevState, contacts[index]];
     });
   };
 
+  const buttonHandlerSortByName = () => {
+    setStateContact((prevState) => {
+      return [...prevState].sort((a, b) => a.name.localeCompare(b.name));
+    })
+  }
 
+  const buttonHandlerSortByPopularity = () => {
+    setStateContact((prevState) => {
+      return [...prevState].sort((a, b) => b.popularity - a.popularity);
+    })
+  }
 
 
   return (
     <div className="App">
       <p>IronContacts</p>
-      <Button onClick={() => buttonHandlerGetRandom()} children="Add random contact" />
+      <Button onClick={buttonHandlerGetRandom} children="Add random contact" />
+      <Button onClick={buttonHandlerSortByName} children="Sort by name" />
+      <Button onClick={buttonHandlerSortByPopularity} children="Sort by popularity" />
       <Table contacts={stateContact} />
     </div>
   );
