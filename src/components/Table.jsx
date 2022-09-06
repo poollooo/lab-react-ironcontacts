@@ -24,10 +24,10 @@ const Table = ({ contacts }) => {
                             <td>{contact.wonOscar ? "🏆" : " "}</td>
                             <td>{contact.wonEmmy ? "🏆" : " "}</td>
                             {/* <td>
-                  <button onClick={() => props.onDeleteRow(contact.id)}>
-                    Delete
-                  </button>
-                </td> */}
+                                <button onClick={() => props.onDeleteRow(contact.id)}>
+                                    Delete
+                                </button>
+                            </td> */}
                         </tr>
                     );
                 })}
