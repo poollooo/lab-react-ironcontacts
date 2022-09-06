@@ -7,7 +7,7 @@ import Button from "./components/Button";
 
 function App() {
   const fiveContacts = contacts.slice(0, 5);
-  const [stateContact, setStateContact] = useState(fiveContacts);
+  const [contact, setStateContact] = useState(fiveContacts);
 
   const buttonHandlerGetRandom = () => {
     let index = Math.floor(Math.random() * (contacts.length + 1));
@@ -28,6 +28,11 @@ function App() {
     })
   }
 
+  // Implement a Delete button on each row of your <table> that will let the user remove the contact they clicked.
+
+  function updateDeletion(array) {
+    setStateContact(array);
+  }
 
   return (
     <div className="App">
@@ -35,7 +40,7 @@ function App() {
       <Button onClick={buttonHandlerGetRandom} children="Add random contact" />
       <Button onClick={buttonHandlerSortByName} children="Sort by name" />
       <Button onClick={buttonHandlerSortByPopularity} children="Sort by popularity" />
-      <Table contacts={stateContact} />
+      <Table contacts={contact} onUpdateDeletion={updateDeletion} />
     </div>
   );
 }

@@ -1,6 +1,16 @@
 import React from 'react';
+import Button from './Button';
 
-const Table = ({ contacts }) => {
+const Table = ({ contacts, ...props }) => {
+
+    function deleteRow(keyToBeDeleted) {
+        const elementToBeReservedArr = contacts.filter((ele) => {
+            return ele.id !== keyToBeDeleted;
+        });
+
+        return props.onUpdateDeletion(elementToBeReservedArr);
+    }
+
     return (
         <table>
             <thead>
@@ -13,9 +23,9 @@ const Table = ({ contacts }) => {
                 </tr>
             </thead>
             <tbody>
-                {contacts.map((contact) => {
+                {contacts.map((contact, ...props) => {
                     return (
-                        <tr>
+                        <tr key={contact.id}>
                             <td>
                                 <img src={contact.pictureUrl} alt="profilePic" />
                             </td>
@@ -23,11 +33,11 @@ const Table = ({ contacts }) => {
                             <td>{contact.popularity.toFixed(2)}</td>
                             <td>{contact.wonOscar ? "🏆" : " "}</td>
                             <td>{contact.wonEmmy ? "🏆" : " "}</td>
-                            {/* <td>
-                                <button onClick={() => props.onDeleteRow(contact.id)}>
+                            <td>
+                                <Button onClick={() => deleteRow(contact.id)}>
                                     Delete
-                                </button>
-                            </td> */}
+                                </Button>
+                            </td>
                         </tr>
                     );
                 })}
